@@ -48,7 +48,12 @@ h2 {
 }
 
 .contact-section {
+    margin-bottom: 0;
+}
+
+.disqus-section {
     margin-bottom: 40px;
+    text-align: left; /* Comments should be left-aligned */
 }
 
 .form-group {
