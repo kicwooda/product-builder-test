@@ -1,35 +1,53 @@
 :root {
-    --primary-color: #2c3e50;
-    --secondary-color: #ecf0f1;
+    --bg-color: #f4f7f6;
+    --container-bg: #ffffff;
+    --text-color: #333333;
     --accent-color: #3498db;
-    --text-color: #ffffff;
+    --button-text: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode {
+    --bg-color: #2c3e50;
+    --container-bg: #34495e;
+    --text-color: #ecf0f1;
+    --accent-color: #3498db;
+    --button-text: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.3);
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: var(--primary-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
     color: var(--text-color);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .container {
     text-align: center;
+    background-color: var(--container-bg);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px var(--shadow-color);
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 h1 {
-    font-size: 3em;
-    margin-bottom: 20px;
+    font-size: 2.5em;
+    margin-bottom: 30px;
 }
 
 .numbers-display {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin-bottom: 30px;
+    gap: 15px;
+    margin-bottom: 40px;
+    min-height: 60px;
 }
 
 .number-ball {
@@ -37,27 +55,61 @@ h1 {
     height: 60px;
     border-radius: 50%;
     background-color: var(--accent-color);
-    color: var(--text-color);
+    color: var(--button-text);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5em;
+    font-size: 1.4em;
     font-weight: bold;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px var(--shadow-color);
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 #generate-button {
     background-color: var(--accent-color);
-    color: var(--text-color);
+    color: var(--button-text);
     border: none;
-    padding: 15px 30px;
-    font-size: 1.2em;
-    border-radius: 5px;
+    padding: 15px 35px;
+    font-size: 1.1em;
+    border-radius: 30px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: transform 0.2s, background-color 0.3s;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    font-weight: 600;
 }
 
 #generate-button:hover {
     background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+#generate-button:active {
+    transform: translateY(0);
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+#theme-button {
+    background: none;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+#theme-button:hover {
+    background-color: var(--accent-color);
+    color: var(--button-text);
 }
