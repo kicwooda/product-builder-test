@@ -60,27 +60,54 @@ p {
 }
 
 /* Classifier Styles */
-.upload-area {
-    border: 2px dashed var(--accent-color);
-    padding: 30px;
-    border-radius: 15px;
+.classifier-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
     margin-bottom: 25px;
-    cursor: pointer;
-    transition: background-color 0.3s;
 }
 
-.upload-area:hover {
-    background-color: rgba(52, 152, 219, 0.05);
-}
-
-#upload-button {
+.classifier-controls button {
     background-color: var(--accent-color);
     color: var(--button-text);
     border: none;
-    padding: 12px 25px;
-    border-radius: 25px;
+    padding: 10px 20px;
+    border-radius: 20px;
     cursor: pointer;
     font-weight: 600;
+    transition: transform 0.2s, opacity 0.3s;
+}
+
+.classifier-controls button:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.webcam-container {
+    margin: 20px auto;
+    border-radius: 15px;
+    overflow: hidden;
+    width: 300px;
+    height: 300px;
+    box-shadow: 0 10px 20px var(--shadow-color);
+    background-color: #000;
+}
+
+.webcam-container canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.upload-area {
+    border: 2px dashed var(--accent-color);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .image-preview img {

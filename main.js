@@ -52,7 +52,8 @@ function displayNumbers(numbers) {
 
 // Teachable Machine Logic
 const URL = "https://teachablemachine.withgoogle.com/models/5hgO6xt91/";
-let model, labelContainer, maxPredictions;
+let model, webcam, labelContainer, maxPredictions;
+let isWebcamRunning = false;
 
 async function initModel() {
     const modelURL = URL + "model.json";
@@ -66,16 +67,63 @@ async function initModel() {
 
     labelContainer = document.getElementById("label-container");
     labelContainer.innerHTML = '';
-    for (let i = 0; i < maxPredictions; i++) {
-        labelContainer.appendChild(document.createElement("div"));
-    }
+}
+
+// Webcam support
+async function initWebcam() {
+    if (!model) await initModel();
+    
+    const flip = true; 
+    webcam = new tmImage.Webcam(300, 300, flip);
+    await webcam.setup(); 
+    await webcam.play();
+    window.requestAnimationFrame(loop);
+
+    document.getElementById("webcam-container").appendChild(webcam.canvas);
+    isWebcamRunning = true;
+}
+
+async function loop() {
+    if (!isWebcamRunning) return;
+    webcam.update();
+    await predict(webcam.canvas);
+    window.requestAnimationFrame(loop);
 }
 
 const imageInput = document.getElementById('image-input');
 const uploadButton = document.getElementById('upload-button');
+const useWebcamButton = document.getElementById('use-webcam-button');
 const imagePreview = document.getElementById('image-preview');
+const webcamContainer = document.getElementById('webcam-container');
+const uploadArea = document.getElementById('upload-area');
 
-uploadButton.addEventListener('click', () => imageInput.click());
+uploadButton.addEventListener('click', () => {
+    stopWebcam();
+    imageInput.click();
+});
+
+useWebcamButton.addEventListener('click', async () => {
+    if (isWebcamRunning) {
+        stopWebcam();
+    } else {
+        imagePreview.innerHTML = '';
+        uploadArea.style.display = 'none';
+        webcamContainer.style.display = 'block';
+        useWebcamButton.textContent = 'Stop Webcam';
+        await initWebcam();
+    }
+});
+
+function stopWebcam() {
+    isWebcamRunning = false;
+    if (webcam) {
+        webcam.stop();
+        webcamContainer.innerHTML = '';
+        webcamContainer.style.display = 'none';
+    }
+    uploadArea.style.display = 'block';
+    useWebcamButton.textContent = 'Use Webcam';
+}
 
 imageInput.addEventListener('change', async (e) => {
     if (!model) await initModel();
@@ -96,8 +144,8 @@ imageInput.addEventListener('change', async (e) => {
     reader.readAsDataURL(file);
 });
 
-async function predict(imgElement) {
-    const prediction = await model.predict(imgElement);
+async function predict(inputElement) {
+    const prediction = await model.predict(inputElement);
     labelContainer.innerHTML = '';
     
     // Sort predictions by probability

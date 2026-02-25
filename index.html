@@ -17,11 +17,19 @@
     <div class="container">
         <h1>Country Classifier</h1>
         <p>USA vs China Test</p>
+        
+        <div class="classifier-controls">
+            <button id="use-webcam-button">Use Webcam</button>
+            <button id="upload-button">Upload Image</button>
+        </div>
+
+        <div id="webcam-container" class="webcam-container" style="display:none;"></div>
+        
         <div id="upload-area" class="upload-area">
             <input type="file" id="image-input" accept="image/*" hidden>
-            <button id="upload-button">Upload Image</button>
             <div id="image-preview" class="image-preview"></div>
         </div>
+
         <div id="label-container" class="label-container"></div>
         <div id="loading-model" style="display:none;">Loading Model...</div>
     </div>
