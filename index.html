@@ -3,13 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lotto Number Generator</title>
+    <title>Country Classifier & Lotto</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
 </head>
 <body>
     <div class="theme-toggle">
         <button id="theme-button">Dark Mode</button>
     </div>
+
+    <!-- Country Classifier Section -->
+    <div class="container">
+        <h1>Country Classifier</h1>
+        <p>USA vs China Test</p>
+        <div id="upload-area" class="upload-area">
+            <input type="file" id="image-input" accept="image/*" hidden>
+            <button id="upload-button">Upload Image</button>
+            <div id="image-preview" class="image-preview"></div>
+        </div>
+        <div id="label-container" class="label-container"></div>
+        <div id="loading-model" style="display:none;">Loading Model...</div>
+    </div>
+
+    <!-- Lotto Generator Section -->
     <div class="container">
         <h1>Lotto Number Generator</h1>
         <div id="numbers-display" class="numbers-display"></div>
@@ -34,16 +51,7 @@
     </div>
 
     <script>
-        /**
-        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-        /*
-        var disqus_config = function () {
-        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-        };
-        */
-        (function() { // DON'T EDIT BELOW THIS LINE
+        (function() {
         var d = document, s = d.createElement('script');
         s.src = 'https://kicwoo.disqus.com/embed.js';
         s.setAttribute('data-timestamp', +new Date());
