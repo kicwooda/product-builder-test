@@ -12,54 +12,101 @@
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
 </head>
 <body>
-    <div class="theme-toggle">
-        <button id="theme-button">Dark Mode</button>
-    </div>
-
-    <!-- Country Classifier Section -->
-    <div class="container">
-        <h1>Country Classifier</h1>
-        <p>USA vs China Test</p>
-        
-        <div class="classifier-controls">
-            <button id="use-webcam-button">Use Webcam</button>
-            <button id="upload-button">Upload Image</button>
-        </div>
-
-        <div id="webcam-container" class="webcam-container" style="display:none;"></div>
-        
-        <div id="upload-area" class="upload-area">
-            <input type="file" id="image-input" accept="image/*" hidden>
-            <div id="image-preview" class="image-preview"></div>
-        </div>
-
-        <div id="label-container" class="label-container"></div>
-        <div id="loading-model" style="display:none;">Loading Model...</div>
-    </div>
-
-    <!-- Lotto Generator Section -->
-    <div class="container">
-        <h1>Lotto Number Generator</h1>
-        <div id="numbers-display" class="numbers-display"></div>
-        <button id="generate-button">Generate Numbers</button>
-    </div>
-
-    <div class="container contact-section">
-        <h2>Partnership Inquiry</h2>
-        <form action="https://formspree.io/f/xykdldda" method="POST" id="contact-form">
-            <div class="form-group">
-                <input type="email" name="email" placeholder="Your Email Address" required>
+    <header class="main-header">
+        <nav class="nav-container">
+            <div class="logo">Global Tools</div>
+            <ul class="nav-links">
+                <li><a href="#classifier">Classifier</a></li>
+                <li><a href="#lotto">Lotto</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="theme-toggle">
+                <button id="theme-button">Dark Mode</button>
             </div>
-            <div class="form-group">
-                <textarea name="message" placeholder="Tell us about your proposal..." required></textarea>
-            </div>
-            <button type="submit" id="submit-button">Send Inquiry</button>
-        </form>
-    </div>
+        </nav>
+    </header>
 
-    <div class="container disqus-section">
-        <div id="disqus_thread"></div>
-    </div>
+    <main>
+        <!-- Intro Section for AdSense Value -->
+        <section class="container intro-section">
+            <h1>Premium Web Utilities</h1>
+            <p>Welcome to our high-quality tool suite. We provide AI-powered recognition and statistically backed generators to enhance your daily digital experience. Our mission is to deliver clean, ad-friendly, and useful services to users worldwide.</p>
+        </section>
+
+        <!-- Country Classifier Section -->
+        <section id="classifier" class="container">
+            <h1>AI Country Classifier</h1>
+            <div class="description">
+                <p>Utilizing advanced neural networks via TensorFlow, our Country Classifier identifies national symbols and architecture with high precision. This tool is designed for educational purposes, helping users distinguish between different cultural visual markers.</p>
+            </div>
+            <p class="test-label">USA vs China Image Test</p>
+            
+            <div class="classifier-controls">
+                <button id="use-webcam-button">Use Webcam</button>
+                <button id="upload-button">Upload Image</button>
+            </div>
+
+            <div id="webcam-container" class="webcam-container" style="display:none;"></div>
+            
+            <div id="upload-area" class="upload-area">
+                <input type="file" id="image-input" accept="image/*" hidden>
+                <div id="image-preview" class="image-preview"></div>
+            </div>
+
+            <div id="label-container" class="label-container"></div>
+            <div id="loading-model" style="display:none;">Loading AI Model...</div>
+        </section>
+
+        <!-- Lotto Generator Section -->
+        <section id="lotto" class="container">
+            <h1>Smart Lotto Generator</h1>
+            <div class="description">
+                <p>Our random number generator uses cryptographically secure algorithms to provide truly random sets for your lottery needs. Whether you are playing the 6/45 format or just need random integers, our tool ensures fair distribution.</p>
+            </div>
+            <div id="numbers-display" class="numbers-display"></div>
+            <button id="generate-button">Generate Numbers</button>
+        </section>
+
+        <!-- About & Privacy Section (Crucial for AdSense) -->
+        <section id="about" class="container policy-section">
+            <h2>About & Privacy Policy</h2>
+            <div class="policy-content">
+                <h3>Our Service</h3>
+                <p>This site provides free web-based tools using cutting-edge technology. We focus on user privacy and data security.</p>
+                <h3>Privacy Policy</h3>
+                <p>We do not store your uploaded images or webcam feeds. All AI processing happens locally in your browser. We use Google AdSense to serve ads, which may use cookies to show relevant content. By using this site, you agree to our use of cookies for analytics and advertising purposes.</p>
+            </div>
+        </section>
+
+        <section id="contact" class="container contact-section">
+            <h2>Partnership & Support</h2>
+            <form action="https://formspree.io/f/xykdldda" method="POST" id="contact-form">
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Your Email Address" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" placeholder="Tell us about your proposal or feedback..." required></textarea>
+                </div>
+                <button type="submit" id="submit-button">Send Message</button>
+            </form>
+        </section>
+
+        <section class="container disqus-section">
+            <div id="disqus_thread"></div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Global Tools Suite. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a> | 
+                <a href="#">Terms of Service</a> | 
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
 
     <script>
         (function() {

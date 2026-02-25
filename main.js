@@ -1,4 +1,4 @@
-const generateButton = document.getElementById('generate-button');
+2const generateButton = document.getElementById('generate-button');
 const numbersDisplay = document.getElementById('numbers-display');
 const themeButton = document.getElementById('theme-button');
 const body = document.body;
